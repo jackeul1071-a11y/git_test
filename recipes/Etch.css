@@ -1,0 +1,44 @@
+:root{
+    --BOX-SIZE:600px;
+}
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.form{
+    padding:20px
+}
+
+
+.container{
+    display:flex;
+    flex-direction: column;
+   
+    width: var(--BOX-SIZE);
+    height: var(--BOX-SIZE);
+    border:2px solid #333;
+   
+}
+.row {
+    display: flex;
+    flex : 1;
+}
+.cell{
+   flex:1;
+   border:1px solid #ddd;
+   background:#f0f0f0;
+   user-select: none;
+   transition: background 0.1s;
+}
+.cell:hover{
+    background: #000;
+}
+.cell.hovered{
+    background: #333;
+}

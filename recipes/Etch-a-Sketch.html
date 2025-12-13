@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Etch.css">
+</head>
+
+<body>
+    <h1>像素绘图,还在施工</h1>
+    <form action="" class="form">
+        <label for="size">
+            你想要多大的画布:
+            <input type="number" name="size" placeholder="100-1000">px
+        </label>
+
+        <label for="box">
+            你想要多少方格
+            <input type="number" name="box"  placeholder="1-50">个
+        </label>
+        <button class="paint">绘制</button>
+    </form>
+
+
+
+    <script>
+        const form = document.querySelector('form')
+        const paint = document.querySelector('.paint')
+        const root = document.documentElement
+
+        let isDrawing = false;
+        let container;
+
+        const paintBox = (e) => {
+            if(e) e.preventDefault()
+
+            const { size, box } = getElementInfo()
+
+            if (container) container.remove();
+            container = document.createElement('dov')
+            container.className = 'container'
+
+            for (let i = 0; i < box; i++) {
+                const row = document.createElement('div')
+                row.className = 'row'
+                for (let j = 0; j < box; j++) {
+                    const cell = document.createElement('div')
+                    cell.className = 'cell'
+                    addDrawing(cell)
+                    row.appendChild(cell)
+                }
+                container.appendChild(row)
+            }
+            document.body.appendChild(container)
+        }
+
+       
+
+        const getElementInfo = () => {
+            const size = form.querySelector('input[name="size"]').value || 500
+            const box = form.querySelector('input[name="box"]').value || 50
+            return { size, box }
+        }
+
+
+        const addDrawing = (cell) => {
+            cell.addEventListener('mousedown', e => {
+                isDrawing = true;
+                cell.classList.add('hovered')
+            })
+            cell.addEventListener('mouseover',() => {
+                if(isDrawing) cell.classList.add('hovered')
+            })
+        }
+
+         paintBox()
+        document.addEventListener('mouseup',() => {isDrawing = false;})
+        document.addEventListener('mouseleave',() => {isDrawing = false;})
+
+        paint.addEventListener('click', e => paintBox(e))
+    </script>
+</body>
+
+</html>
