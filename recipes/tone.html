@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石头剪刀布</title>
+    <style>
+        .dispeal {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>这是石头剪刀布游戏</h1>
+    <button class="toplay">要玩吗, 请打开控制台，输入playGame()</button>
+    <button onclick="playGame()">playGame()</button>
+    <p>该页面还在施工</p>
+    <form action="" class="dispeal">
+        <p>请选择：</p>
+
+        <label>
+            <input type="radio" name="choice" value="1" checked>
+            石头
+        </label><br>
+
+        <label>
+            <input type="radio" name="choice" value="0">
+            剪刀
+        </label><br>
+
+        <label>
+            <input type="radio" name="choice" value="-1">
+            布
+        </label>
+        <br>
+        <button type="submit">提交</button>
+    </form>
+
+    <script>
+        const form = document.querySelector('form')
+
+
+        const play = document.querySelector('.toplay')
+        // console.log(play);
+
+
+
+
+        const getHumanChoice = () => {
+            // e.preventDefault();
+
+            let inout;
+
+            while (true) {
+                input = +prompt('请输入 石头(1) 剪刀(0) 布(-1)');
+
+                // 验证输入是否为 1, 0, -1
+                if (input === 1 || input === 0 || input === -1) {
+                    return input;
+                }
+
+                alert('请输入有效的数字：1(石头), 0(剪刀), -1(布)');
+            }
+
+
+        }
+
+        const getComputerChoice = () => {
+            const sum = Math.floor(Math.random() * 3 - 1)
+
+            return sum
+        }
+
+        const getChoiceName = (choice) => {
+            const map = { 1: "石头", 0: "剪刀", [-1]: "布" }
+            return map[choice]
+        }
+
+        const playRound = (arr, roundIndex) => {
+
+            console.log(`\n===第${roundIndex + 1}轮===`);
+
+
+            const hchoice = getHumanChoice();
+            const cchoice = getComputerChoice();
+
+            console.log(` 你的选择 ${getChoiceName(hchoice)}`);
+            console.log(` 电脑选择 ${getChoiceName(cchoice)}`);
+
+
+
+            let difference = hchoice - cchoice;
+            if (difference === 1 || difference === -2) {
+                console.log("玩家赢了");
+                arr[0]++
+
+            }
+            if (difference === 0) {
+                console.log("平局");
+
+            }
+            if (difference === -1 || difference === 2) {
+                console.log("电脑赢了");
+                arr[1]++
+            }
+
+
+
+            return [...arr]
+        }
+
+        const playGame = () => {
+            console.log("🎮 开始石头剪刀布游戏！");
+            console.log("将进行5轮游戏，请依次输入你的选择。\n");
+
+            let arr = [0, 0]
+            for(let i = 0 ; i< 5 ; i++){
+                arr = playRound(arr,i)
+            }
+            
+            console.log('--------------');
+            
+
+            if (arr[0] < arr[1]) {
+                console.log('电脑最终赢')
+            }
+            if (arr[0] > arr[1]) {
+                console.log('玩家最终赢')
+            }
+            console.log(`电脑${arr[1]}分  , 玩家${arr[0]}分`)
+        }
+
+
+        console.log('游戏已加载，点击"开始5轮游戏"按钮或输入 playGame() 开始游戏');
+
+        form.addEventListener('submit', getHumanChoice)
+
+        console.log(Array(5).fill(0));
+
+
+
+    </script>
+
+
+</body>
+
+</html>
