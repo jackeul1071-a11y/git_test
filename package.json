@@ -1,0 +1,31 @@
+{
+  "name": "git_test",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/jackeul1071-a11y/git_test#readme",
+  "bugs": {
+    "url": "https://github.com/jackeul1071-a11y/git_test/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackeul1071-a11y/git_test.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "dev": "vite",
+    "build": "vite build",  
+    "preview": "vite preview"
+  },
+  "devDependcies": {},
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@vitest/coverage-v8": "^4.0.16",
+    "vite": "^7.3.0",
+    "vitest": "^4.0.16"
+  }
+}

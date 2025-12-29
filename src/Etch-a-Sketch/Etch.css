@@ -23,7 +23,6 @@ body{
     width: var(--BOX-SIZE);
     height: var(--BOX-SIZE);
     border:2px solid #333;
-   
 }
 .row {
     display: flex;
